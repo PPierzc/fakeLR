@@ -13,7 +13,7 @@ jobs:
       uses: mariamrf/py-lambda-action@v1.0.0
       with:
         lambda_function_name: 'fakeLR'
-        lambda_layer_arn: 'arn:aws:lambda:us-east-2:259788987135:layer:AWSLambda-Python38-SciPy1x:29'
+        lambda_layer_arn: 'arn:aws:lambda:us-east-2:259788987135:layer:AWSLambda-Python38-SciPy1x'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
