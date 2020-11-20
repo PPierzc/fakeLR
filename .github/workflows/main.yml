@@ -10,27 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Deploy code to Lambda
-      inputs:
-        requirements_txt:
-          description: the name/path to the requirements.txt file
-          required: true
-          default: 'requirements.txt'
-        lambda_layer_arn:
-          description: The ARN for the Lambda layer the dependencies should be pushed to without the version (every push is a new version).
-          required: true
-        lambda_function_name:
-          description: The Lambda function name. Check the AWS docs/readme for examples.
-          required: true
-      runs:
+    - runs:
         using: 'docker'
         image: 'Dockerfile'
         args:
-          - ${{ inputs.requirements_txt }}
-          - ${{ inputs.lambda_layer_arn }}
-          - ${{ inputs.lambda_function_name }}
-      with:
-        lambda_function_name: 'fakeLR'
-        lambda_layer_arn: 'arn:aws:lambda:us-east-2:421550541624:layer:fake_LR_dep'
+          - requirements_txt: 'requirements.txt'
+          - lambda_function_name: 'fakeLR'
+          - lambda_layer_arn: 'arn:aws:lambda:us-east-2:421550541624:layer:fake_LR_dep'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
