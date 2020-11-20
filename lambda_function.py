@@ -5,7 +5,7 @@ def lambda_handler(event, context):
         data = json.loads(event['body'])
         if 'input' in data.keys():
             input_data = int(data['input'])
-            prediction = 2 * input_data + 1
+            prediction = 5 * input_data + 1
             return prediction
     else:
         return 'error'
