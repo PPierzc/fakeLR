@@ -10,10 +10,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Deploy code to Lambda
-      uses: action
-      with:
-        lambda_function_name: 'fakeLR'
-        lambda_layer_arn: 'arn:aws:lambda:us-east-2:421550541624:layer:fake_LR_dep'
+      using: 'docker'
+        image: 'Dockerfile'
+        args:
+          - requirements_txt: 'requirements.txt'
+          - lambda_function_name: 'fakeLR'
+          - lambda_layer_arn: 'arn:aws:lambda:us-east-2:421550541624:layer:fake_LR_dep'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
